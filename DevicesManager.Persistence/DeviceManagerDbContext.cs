@@ -1,24 +1,20 @@
 ﻿using DevicesManager.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DevicesManager.Persistence
 {
     public class DeviceManagerDbContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
-
-        public DeviceManagerDbContext(IConfiguration configuration)
+        public DeviceManagerDbContext(DbContextOptions<DeviceManagerDbContext> options) : base(options)
         {
-            Configuration = configuration;
+
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        public DbSet<Device> Devices => Set<Device>();
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            options.UseSqlite(Configuration.GetConnectionString("DeviceDatabase"));
+            modelBuilder.Entity<Device>()
+                .HasKey(x => x.Id);
         }
-
-        public DbSet<Device> Devices { get; set; }
-     
     }
 }

@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using DevicesManager.Dtos.Response;
+using DevicesManager.Services.Interfaces;
+using Microsoft.AspNetCore.SignalR;
 
 namespace DevicesManager.Server.SignalR
 {
     public class DevicesHub : Hub
     {
-        public async Task SendMessage(string user, string message)
+        private readonly IDeviceCommandService _deviceCommandService;
+        public DevicesHub(IDeviceCommandService deviceCommandService)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            _deviceCommandService = deviceCommandService;
+        }
+
+        public async Task SendDeviceInfo(DeviceDto dto)
+        {
+            dto.ConectionId = Context.ConnectionId;
+           await _deviceCommandService.AddAsync(dto);
         }
     }
 }

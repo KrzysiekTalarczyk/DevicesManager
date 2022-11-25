@@ -1,40 +1,32 @@
-﻿using System.Net.Sockets;
-using System.Net;
-using System.Net.NetworkInformation;
-using DevicesManager.Client.Model;
-using System.Diagnostics;
+﻿using DevicesManager.Client.Model;
 
 namespace DevicesManager.Client
 {
-    internal class CurrentDeviceService
+    internal class CurrentDeviceService : ICurrentDeviceService
     {
-        public DeviceInfo GetDeviceInformation()
+        public DeviceDto GetDeviceInformation()
         {
-            var machineName = Environment.MachineName;
-            var machineName2 = Environment.UserName;
-            var machineName3 = Environment.Is64BitOperatingSystem;
-            var system = Environment.OSVersion;
-            var memoryInfo = GC.GetGCMemoryInfo();
-            var freeMemory = memoryInfo.TotalAvailableMemoryBytes;
-            return new DeviceInfo();
+            try
+            {
+                var machineName = Environment.MachineName;
+                var user = Environment.UserName;
+                var system = Environment.OSVersion.VersionString;
+                var memory = GC.GetGCMemoryInfo().TotalAvailableMemoryBytes;
+                var memoryMB = memory / 1024 / 1024;
+                return new DeviceDto
+                {
+                    HostName = machineName,
+                    UserName = user,
+                    OperationSystem = system,
+                    RAMAmountMB = (int)memoryMB
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Some errors occure when collecting cilent information {ex.Message}");
+                throw;
+            }
+
         }
     }
 }
-
-//var getip = getIP();
-//Console.WriteLine("Your IP Address is :" + getip);
-//String hostName = Dns.GetHostName();
-//Console.WriteLine("Computer name :" + hostName);
-
-//static string getIP()
-//{
-//    var myhost = Dns.GetHostEntry(Dns.GetHostName());
-//    foreach (var ipaddr in myhost.AddressList)
-//    {
-//        if (ipaddr.AddressFamily == AddressFamily.InterNetwork)
-//        {
-//            return ipaddr.ToString();
-//        }
-//    }
-//    throw new Exception("No network adapters with an IPv4 address was found");
-//}

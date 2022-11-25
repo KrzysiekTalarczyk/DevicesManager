@@ -28,7 +28,7 @@ namespace DevicesManager.Server.Controllers
         [OpenApiOperation("Get all devices")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<DeviceDto>>> GetAll(GetAllDevicesRequestDto query)
+        public async Task<ActionResult<IEnumerable<DeviceDto>>> GetAll([FromQuery] GetAllDevicesRequestDto query)
         {
             var response = await _devicesQueryService.GetDevices(query);
             return Ok(response.Results, query, response.TotalResultCount);

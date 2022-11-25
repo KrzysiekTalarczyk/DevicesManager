@@ -4,9 +4,8 @@
     {
         public string HostName { get; set; }
         public string OperationSystem { get; set; }
-
-        public int RAM { get; set; }
-
-        public string ProcessorType { get; set; }
+        public int RAMAmountMB { get; set; }
+        public string UserName { get; set; }
+        public string ConectionId { get; set; }
     }
 }
