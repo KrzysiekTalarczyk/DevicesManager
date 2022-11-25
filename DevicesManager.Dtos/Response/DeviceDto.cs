@@ -2,10 +2,11 @@
 {
     public class DeviceDto
     {
-        public string HostName { get; set; }
-        public string OperationSystem { get; set; }
-        public int RAMAmountMB { get; set; }
-        public string UserName { get; set; }
-        public string ConectionId { get; set; }
+        public int Id { get; set; }
+        public string HostName { get; set; } = string.Empty;
+        public string OperationSystem { get; set; } = string.Empty;
+        public int RAMAmountMB { get; set; } = 0;
+        public string UserName { get; set; } = string.Empty;
+        public string ConnectionId { get; set; } = string.Empty;
     }
 }

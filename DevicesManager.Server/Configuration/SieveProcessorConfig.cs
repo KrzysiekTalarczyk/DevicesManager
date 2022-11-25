@@ -14,10 +14,11 @@ namespace DevicesManager.Server.Configuration
 
         protected override SievePropertyMapper MapProperties(SievePropertyMapper mapper)
         {
-            mapper.Property<Device>(x => x.Id).CanFilter().CanSort().HasName("Id");
-
+            mapper.Property<Device>(x => x.Id).CanFilter().CanSort();
             mapper.Property<Device>(x => x.HostName).CanFilter().CanSort();
             mapper.Property<Device>(x => x.OperationSystem).CanFilter().CanSort();
+            mapper.Property<Device>(x => x.UserName).CanFilter().CanSort();
+            mapper.Property<Device>(x => x.RAMAmountMB).CanFilter().CanSort();
             return mapper;
         }
     }

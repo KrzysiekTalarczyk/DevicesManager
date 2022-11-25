@@ -4,6 +4,7 @@ using DevicesManager.Dtos.Response;
 using DevicesManager.Persistence.Repositories;
 using DevicesManager.Services.Exceptions;
 using DevicesManager.Services.Interfaces;
+using DevicesManager.Services.SignalR;
 
 namespace DevicesManager.Services.Services
 {
@@ -11,10 +12,14 @@ namespace DevicesManager.Services.Services
     {
         private readonly IDeviceRepository _deviceRepository;
         private readonly IMapper _mapper;
-        public DeviceCommandService(IDeviceRepository deviceRepository, IMapper mapper)
+        private IClientService _clientService;
+        public DeviceCommandService(IDeviceRepository deviceRepository,
+                                    IMapper mapper,
+                                    IClientService clientService)
         {
             _deviceRepository = deviceRepository;
             _mapper = mapper;
+            _clientService = clientService;
         }
 
         public async Task AddAsync(DeviceDto dto)
@@ -32,7 +37,7 @@ namespace DevicesManager.Services.Services
                 throw new NotFoundException($"Entity with Id {id} not found");
             _deviceRepository.Remove(device);
             await _deviceRepository.CompleteAsync();
-            //hub
+            await _clientService.CloseClient(device.ConnectionId);
         }
     }
 }

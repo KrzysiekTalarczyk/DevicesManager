@@ -1,15 +1,25 @@
 ﻿using DevicesManager.Client;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Configuration;
-
 
 var serverHubUrl = AppConfiguration.GetServerHubUrl();
 var service = new CurrentDeviceService();
 var info = service.GetDeviceInformation();
-
+var running = true;
 var connection = new HubConnectionBuilder()
                      .WithUrl(serverHubUrl)
                      .Build();
 
-connection.StartAsync().Wait();
-connection.InvokeCoreAsync("SendDeviceInfo", args: new[] { info });
+connection.On<string>("CloseClient",
+    async connectionId =>
+    {
+        await connection.StopAsync();
+        Console.WriteLine($"Client with connectionId {connectionId} closed");
+        running = false;
+    });
+
+await connection.StartAsync();
+
+await connection.InvokeCoreAsync("SendDeviceInfo", args: new[] { info });
+
+while (running) { }
+Console.ReadKey();

@@ -1,6 +1,7 @@
 ﻿using DevicesManager.Persistence.Repositories;
 using DevicesManager.Services.Interfaces;
 using DevicesManager.Services.Services;
+using DevicesManager.Services.SignalR;
 
 namespace DevicesManager.Server.Configuration
 {
@@ -12,6 +13,7 @@ namespace DevicesManager.Server.Configuration
             services.AddScoped<IDeviceQueryService, DeviceQueryService>();
             services.AddScoped<IDeviceCommandService, DeviceCommandService>();
             services.AddScoped<IQueryFrameExecutor, QueryFrameExecutor>();
+            services.AddScoped<IClientService, ClientService>();
             return services;
         }
     }

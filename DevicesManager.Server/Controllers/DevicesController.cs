@@ -18,7 +18,6 @@ namespace DevicesManager.Server.Controllers
             _devicesCommandService = devicesCommandService;
         }
 
-
         /// <summary>
         /// Get all devices.
         /// </summary>
