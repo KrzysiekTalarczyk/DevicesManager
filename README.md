@@ -1,9 +1,7 @@
-# DevicesManager
-
 # DevicesManager.Client
 
-Is a application for collecting information about current devices. 
-Those information will be send to the server. The server url should be provided in appsettings.json e.g :
+Is an application for collecting information about current devices. 
+Those information will be sent to the server. The server url should be specified in appsettings.json, for example, :
 		
 		{
 			"ServerHubUrl": "http://localhost:5037/devicesHub" 
@@ -12,7 +10,7 @@ Those information will be send to the server. The server url should be provided 
 		
 		
 # DevicesManager.Server
-is a server application for collecting devices information and offers REST API.
+is a server application for collecting device information and offers a REST API.
 
 How to use API filtering, sorting and pagination:
 GET /Devices
