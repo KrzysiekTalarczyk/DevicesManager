@@ -27,7 +27,7 @@ namespace DevicesManager.Persistence.Repositories
             _context.Devices.Remove(Device);
         }
 
-        public IQueryable<Device> GetAll() //Query
+        public IQueryable<Device> GetAll()
         {
             return _context.Devices.AsNoTracking()
                                    .Select(m => m);

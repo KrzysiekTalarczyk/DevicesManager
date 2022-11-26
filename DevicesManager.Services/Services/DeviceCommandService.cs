@@ -24,7 +24,6 @@ namespace DevicesManager.Services.Services
 
         public async Task AddAsync(DeviceDto dto)
         {
-            //validation
             var entity = _mapper.Map<Device>(dto);
             await _deviceRepository.AddAsync(entity);
             await _deviceRepository.CompleteAsync();

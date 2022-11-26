@@ -5,15 +5,23 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicesManager.Client", "DevicesManager.Client\DevicesManager.Client.csproj", "{03715B4C-C4AE-424C-AB08-B9E0EE7E7BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesManager.Server", "DevicesManager.Server\DevicesManager.Server.csproj", "{24FADE86-AC23-4419-BB82-71478310151A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicesManager.Server", "DevicesManager.Server\DevicesManager.Server.csproj", "{24FADE86-AC23-4419-BB82-71478310151A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesManager.Dtos", "DevicesManager.Dtos\DevicesManager.Dtos.csproj", "{F0BD462B-5593-4FF0-80E9-5730FCF30F5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicesManager.Dtos", "DevicesManager.Dtos\DevicesManager.Dtos.csproj", "{F0BD462B-5593-4FF0-80E9-5730FCF30F5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesManager.Services", "DevicesManager.Services\DevicesManager.Services.csproj", "{A154660E-FB78-42C9-BA94-E62517863189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicesManager.Services", "DevicesManager.Services\DevicesManager.Services.csproj", "{A154660E-FB78-42C9-BA94-E62517863189}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesManager.Persistence", "DevicesManager.Persistence\DevicesManager.Persistence.csproj", "{78317F1A-8134-4A94-8F2C-7747BCEE53DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicesManager.Persistence", "DevicesManager.Persistence\DevicesManager.Persistence.csproj", "{78317F1A-8134-4A94-8F2C-7747BCEE53DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesManager.Domain", "DevicesManager.Domain\DevicesManager.Domain.csproj", "{13B4FBFC-662A-4F38-A328-509FC5F48E8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevicesManager.Domain", "DevicesManager.Domain\DevicesManager.Domain.csproj", "{13B4FBFC-662A-4F38-A328-509FC5F48E8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{0BB7948A-AF70-4286-B832-D9298C43EE0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{39EBA348-693C-47ED-8883-46DA060EE9C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2D59D4E9-4CAB-4C90-8717-0D0C16A14EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevicesManager.Services.Tests", "Server.Tests\DevicesManager.Services.Tests\DevicesManager.Services.Tests.csproj", "{A5FBB4B0-D343-4916-982A-FE50A0F8DFB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +53,23 @@ Global
 		{13B4FBFC-662A-4F38-A328-509FC5F48E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13B4FBFC-662A-4F38-A328-509FC5F48E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13B4FBFC-662A-4F38-A328-509FC5F48E8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5FBB4B0-D343-4916-982A-FE50A0F8DFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5FBB4B0-D343-4916-982A-FE50A0F8DFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FBB4B0-D343-4916-982A-FE50A0F8DFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5FBB4B0-D343-4916-982A-FE50A0F8DFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03715B4C-C4AE-424C-AB08-B9E0EE7E7BBE} = {39EBA348-693C-47ED-8883-46DA060EE9C7}
+		{24FADE86-AC23-4419-BB82-71478310151A} = {0BB7948A-AF70-4286-B832-D9298C43EE0D}
+		{F0BD462B-5593-4FF0-80E9-5730FCF30F5A} = {0BB7948A-AF70-4286-B832-D9298C43EE0D}
+		{A154660E-FB78-42C9-BA94-E62517863189} = {0BB7948A-AF70-4286-B832-D9298C43EE0D}
+		{78317F1A-8134-4A94-8F2C-7747BCEE53DF} = {0BB7948A-AF70-4286-B832-D9298C43EE0D}
+		{13B4FBFC-662A-4F38-A328-509FC5F48E8C} = {0BB7948A-AF70-4286-B832-D9298C43EE0D}
+		{2D59D4E9-4CAB-4C90-8717-0D0C16A14EE1} = {0BB7948A-AF70-4286-B832-D9298C43EE0D}
+		{A5FBB4B0-D343-4916-982A-FE50A0F8DFB1} = {2D59D4E9-4CAB-4C90-8717-0D0C16A14EE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {999E0C4B-39B6-443D-A562-117F4500C3FF}

@@ -1,25 +1,14 @@
 ﻿using DevicesManager.Client;
-using Microsoft.AspNetCore.SignalR.Client;
+
+Console.WriteLine("Device Manager Client starts work.");
 
 var serverHubUrl = AppConfiguration.GetServerHubUrl();
+var hub = new DeviceHubService(serverHubUrl);
 var service = new CurrentDeviceService();
 var info = service.GetDeviceInformation();
-var running = true;
-var connection = new HubConnectionBuilder()
-                     .WithUrl(serverHubUrl)
-                     .Build();
-
-connection.On<string>("CloseClient",
-    async connectionId =>
-    {
-        await connection.StopAsync();
-        Console.WriteLine($"Client with connectionId {connectionId} closed");
-        running = false;
-    });
-
-await connection.StartAsync();
-
-await connection.InvokeCoreAsync("SendDeviceInfo", args: new[] { info });
-
-while (running) { }
+Console.WriteLine($"Collecting iformation about current device: {info}");
+await hub.StartAsync();
+Console.WriteLine($"Connect with: {serverHubUrl}");
+await hub.SendDeviceInformarion(info);
+Console.WriteLine($"Send information about device to server");
 Console.ReadKey();

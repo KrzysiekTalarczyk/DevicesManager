@@ -16,28 +16,6 @@ namespace DevicesManager.Services.SignalR
         {
             dto.ConnectionId = Context.ConnectionId;
             await _deviceCommandService.AddAsync(dto);
-
-          //  await Clients.Client(dto.ConnectionId).SendAsync("CloseClient", "message");
         }
-    }
-
-    public class ClientService : IClientService
-    {
-        private readonly IHubContext<DevicesHub> _hub;
-
-        public ClientService(IHubContext<DevicesHub> hub)
-        {
-            _hub = hub;
-        }
-
-        public async Task CloseClient(string connectionId)
-        {
-            await _hub.Clients.Client(connectionId).SendAsync("CloseClient", connectionId);
-        }
-    }
-
-    public interface IClientService
-    {
-        Task CloseClient(string connectionId);
     }
 }
